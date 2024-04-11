@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+ul {
+  list-style: revert; /* 恢复列表项的默认样式 */
+  padding-left: 1em; /* 恢复左侧缩进 */
+}

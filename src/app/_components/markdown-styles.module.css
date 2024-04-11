@@ -9,6 +9,12 @@
   @apply my-6;
 }
 
+.markdown code {
+  color: brown;
+  background-color:rgb(200, 199, 199);
+  border-radius: 2px
+}
+
 .markdown h2 {
   @apply text-3xl mt-12 mb-4 leading-snug;
 }

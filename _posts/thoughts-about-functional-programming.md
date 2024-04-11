@@ -12,8 +12,6 @@ ogImage:
 
 - Sometimes the purpose of currying is to customize multiple similar functions. For example, the function (a) => (b) => (c) => a + b + c. The purpose is to obtain a function (c) => someValue + c, where the value of someValue depends on the specific scenario, which is somewhat similar to a function constructor. Additionally, Cheng Mo (a respected figure) mentioned that currying is the primary way to pass parameters in functional programming.
 
-<p>ppppppppppppp</p>
-
 - The purpose of currying can also be understood as follows: step-by-step parameter passing. Basic functions can only accept parameters all at once, often requiring multiple variables to store parameters, and then calling the function with all parameters at once. Curried functions, on the other hand, are much more convenient.
 
 - Compose is a kind of pipeline mechanism. Given pure functions a, b, c, const foo = c(b(a(arg))). When running foo(val), the functions a, b, c are pushed into the execution stack in the order of c, b, a, and then the parameter arg is returned in the order of a, b, c. This is similar to gulp's pipe mechanism, where the order of operations (abc) is crucial.
