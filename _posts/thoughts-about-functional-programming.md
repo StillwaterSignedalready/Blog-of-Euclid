@@ -3,11 +3,6 @@ title: "Thoughts About Functional Programming"
 excerpt: "Sometimes the purpose of currying is to customize multiple similar functions. For example, the function (a) => (b) => (c) => a + b + c. The purpose is to obtain a function (c) => someValue + c, where the value of someValue depends on the specific scenario, which is somewhat similar to a function constructor. "
 coverImage: "/assets/blog/thoughts-about-functional-programming/cover.jpg"
 date: "2020-04-12T05:35:07.322Z"
-author:
-  name: Wayne Dai
-  picture: "/assets/blog/authors/wayne.jpg"
-ogImage:
-  url: "/assets/blog/thoughts-about-functional-programming/cover.jpg"
 ---
 
 - Sometimes the purpose of currying is to customize multiple similar functions. For example, the function (a) => (b) => (c) => a + b + c. The purpose is to obtain a function (c) => someValue + c, where the value of someValue depends on the specific scenario, which is somewhat similar to a function constructor. Additionally, Cheng Mo (a respected figure) mentioned that currying is the primary way to pass parameters in functional programming.

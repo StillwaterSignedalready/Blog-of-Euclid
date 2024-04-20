@@ -3,11 +3,6 @@ title: "Algorithm & Data Structure Experience"
 excerpt: "The running time of an algorithm corresponds to the depth of the decision tree path. The number of leaf nodes in the decision tree is n!, which is exponential. The reason why comparison-based sorting is at least O(nlgn) is that the height of the corresponding decision tree is at least O(nlgn)."
 coverImage: "/assets/blog/algorithm-&-data-structure-experience/cover.png"
 date: "2018-02-07T05:35:07.322Z"
-author:
-  name: Tim Neutkens
-  picture: "/assets/blog/authors/wayne.jpg"
-ogImage:
-  url: "/assets/blog/algorithm-&-data-structure-experience/cover.png"
 ---
 
 Comparing linked lists and arrays, arrays have faster lookup speed than linked lists. Why is that? Combining knowledge from computer architecture, my speculation is: When using index to look up an item in an array, the CPU first reads the address of the array into a register, then adds the index multiplied by a coefficient to directly obtain the address of the item, requiring only one memory read. However, when looking up an item in a linked list, depending on the size of the index, it may require reading the memory multiple times.
