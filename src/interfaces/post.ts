@@ -8,7 +8,7 @@ export interface ArticleRow {
 }
 
 export type Post = {
-  slug: string;
+  id: string;
   title: string;
   date: string;
   coverImage: string;

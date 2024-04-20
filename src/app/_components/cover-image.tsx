@@ -7,18 +7,18 @@ import { CSSRuleObject } from "tailwindcss/types/config";
 type Props = {
   title: string;
   src: string;
-  slug?: string;
+  id?: string;
   style?: CSSRuleObject;
   rootRef?: RefObject<HTMLImageElement>;
 };
 
-const CoverImage = ({ title, src, slug, style, rootRef }: Props) => {
+const CoverImage = ({ title, src, id, style, rootRef }: Props) => {
   const image = (
     <Image
       src={src}
       alt={`Cover Image for ${title}`}
       className={cn("shadow-sm w-full", {
-        "hover:shadow-lg transition-shadow duration-200": slug,
+        "hover:shadow-lg transition-shadow duration-200": id,
       })}
       width={1300}
       height={630}
@@ -27,8 +27,8 @@ const CoverImage = ({ title, src, slug, style, rootRef }: Props) => {
 
   return (
     <div className="sm:mx-0" style={style} ref={rootRef}>
-      {slug ? (
-        <Link as={`/posts/${slug}`} href="/posts/[slug]" aria-label={title}>
+      {id ? (
+        <Link as={`/posts/${id}`} href="/posts/[id]" aria-label={title}>
           {image}
         </Link>
       ) : (

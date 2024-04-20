@@ -4,11 +4,11 @@ import { Intro } from "@/app/_components/intro";
 import { MoreStories } from "@/app/_components/more-stories";
 import Provider from './provider'
 import { unstable_noStore as noStore } from 'next/cache'
-import { fetchEnArticles } from '@/lib/database'
+import { fetchArticleListEn } from '@/lib/database'
 
 export default async function Index() {
   noStore();
-  const posts = await fetchEnArticles();
+  const posts = await fetchArticleListEn();
 
   const heroPost = posts[0];
 
@@ -22,7 +22,7 @@ export default async function Index() {
             title={heroPost.title}
             coverImage={heroPost.coverImage}
             date={heroPost.date}
-            slug={heroPost.slug}
+            slug={heroPost.id}
             excerpt={heroPost.excerpt}
           />
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}

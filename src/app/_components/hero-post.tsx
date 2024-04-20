@@ -27,7 +27,7 @@ export function HeroPost({
   return (
     <section>
       <div className="mb-8 md:mb-16 overflow-hidden" style={{ maxHeight: 400 }} ref={imgContainerRef}>
-        <CoverImage rootRef={imgRef as RefObject<HTMLImageElement>} title={title} src={coverImage} slug={slug} style={{ transform: `translate(0, ${offset}px)` }} />
+        <CoverImage rootRef={imgRef as RefObject<HTMLImageElement>} title={title} src={coverImage} id={slug} style={{ transform: `translate(0, ${offset}px)` }} />
       </div>
       <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
         <div>
