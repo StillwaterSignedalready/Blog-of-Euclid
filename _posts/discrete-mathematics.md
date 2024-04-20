@@ -3,11 +3,6 @@ title: "Discrete Mathematics"
 excerpt: "The logical equivalence P∨Q <=> ┐P→Q can be understood using set theory: given that an element is in set P or set Q, we can conclude that if this element is not in set P, then it must be in set Q."
 coverImage: "/assets/blog/discrete-mathematics/cover.png"
 date: "2020-01-16T05:35:07.322Z"
-author:
-  name: Wayne Dai
-  picture: "/assets/blog/authors/wayne.jpg"
-ogImage:
-  url: "/assets/blog/discrete-mathematics/cover.png"
 ---
 
 The logical equivalence P∨Q <=> ┐P→Q can be understood using set theory: given that an element is in set P or set Q, we can conclude that if this element is not in set P, then it must be in set Q.

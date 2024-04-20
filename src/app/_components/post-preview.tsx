@@ -1,6 +1,4 @@
-import { type Author } from "@/interfaces/author";
 import Link from "next/link";
-import Avatar from "./avatar";
 import CoverImage from "./cover-image";
 import DateFormatter from "./date-formatter";
 
@@ -9,8 +7,7 @@ type Props = {
   coverImage: string;
   date: string;
   excerpt: string;
-  author: Author;
-  slug: string;
+  id: string;
 };
 
 export function PostPreview({
@@ -18,18 +15,17 @@ export function PostPreview({
   coverImage,
   date,
   excerpt,
-  author,
-  slug,
+  id: id,
 }: Props) {
   return (
     <div>
       <div className="mb-5 overflow-hidden" style={{ height: 214 }}>
-        <CoverImage slug={slug} title={title} src={coverImage} />
+        <CoverImage id={id} title={title} src={coverImage} />
       </div>
       <h3 className="text-3xl mb-3 leading-snug">
         <Link
-          as={`/posts/${slug}`}
-          href="/posts/[slug]"
+          as={`/posts/${id}`}
+          href="/posts/[id]"
           className="hover:underline"
         >
           {title}
@@ -39,7 +35,6 @@ export function PostPreview({
         <DateFormatter dateString={date} />
       </div>
       <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
-      {/* <Avatar name={author.name} picture={author.picture} /> */}
     </div>
   );
 }

@@ -1,15 +1,18 @@
-import { type Author } from "./author";
+export interface ArticleRow {
+  id: string;
+  title_en: string;
+  excerpt_en: string;
+  content_en: string;
+  cover_image: string;
+  created_at: Date;
+}
 
 export type Post = {
-  slug: string;
+  id: string;
   title: string;
   date: string;
   coverImage: string;
-  author: Author;
   excerpt: string;
-  ogImage: {
-    url: string;
-  };
   content: string;
   preview?: boolean;
 };

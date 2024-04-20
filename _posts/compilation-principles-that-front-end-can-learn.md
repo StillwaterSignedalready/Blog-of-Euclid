@@ -3,11 +3,6 @@ title: "Compilation Principles That Front End Can Learn"
 excerpt: "In modern front-end development, when requirements involve the display and editing of code and expressions, one of the programmers' three romances, compiler theory, is involved. It is a seemingly deep and complex field."
 coverImage: "/assets/blog/compilation-principles-that-front-end-can-learn/cover.png"
 date: "2023-08-22T05:35:07.322Z"
-author:
-  name: Wayne Dai
-  picture: "/assets/blog/authors/wayne.jpg"
-ogImage:
-  url: "/assets/blog/compilation-principles-that-front-end-can-learn/cover.png"
 ---
 In modern front-end development, when requirements involve the display and editing of code and expressions, one of the programmers' three romances, compiler theory, is involved. It is a seemingly deep and complex field. In this article, we will demonstrate how to build a compiler-based project using TypeScript, parsing arithmetic expressions to construct a syntax tree. This not only deepens your understanding of compiler theory but also adds a highlight to your front-end skillset.
 
@@ -57,6 +52,9 @@ The multiplication sign is detected. Since multiplication takes precedence over 
 ![image.jpg](/_next/image?url=%2Fassets%2Fblog%2Fcompilation-principles-that-front-end-can-learn%2Fsyntax-analysis-3.jpg&w=3840&q=75)
 
 The traversal ends and the multiplication expression returns
+
+## Validation of expression syntax
+The logic of verification can penetrate into the process of lexical and syntactic analysis, and errors can be thrown directly, we can take **expect xx after xx, but got xx** as tip info.
 
 ## Conclusion
 Through this project, we have gained an initial understanding of some concepts in compiler theory, such as finite-state machines, lexical analysis, and syntax analysis. We demonstrated how to build a simple expression validation and calculation tool using TypeScript, thereby deepening our understanding of compiler theory and mastering more powerful skills in front-end development. Whether you want to deepen your technical depth or enrich your skill set, compiler theory is a field worth exploring.
