@@ -1,8 +1,16 @@
 'use client'
 import { Button, Modal, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/react";
+import { LanguageIcon } from '@/app/_components/icons'
 
 export function Intro() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const onSwitchLanBtnClick = () => {
+    const currentUrl = new URL(location.href)
+    const currentLanIsCn = currentUrl.searchParams.get('lan') === 'cn'
+    currentUrl.searchParams.set('lan', currentLanIsCn ? 'en' : 'cn')
+    window.open(String(currentUrl), '_blank')
+  }
+
   return (
     <section className="flex-col md:flex-row flex items-center md:justify-between mt-6 mb-16 md:mb-12">
       <h1 className="text-5xl md:text-8xl font-bold tracking-tighter leading-tight md:pr-8">
@@ -10,6 +18,9 @@ export function Intro() {
         Wayne's Blog
       </h1>
       <div className="flex-1 h-full text-right">
+        <Button isIconOnly onClick={onSwitchLanBtnClick} variant="light" className="relative top-1">
+          <LanguageIcon />
+        </Button>
         <Button onClick={onOpen} variant="light">
           AboutMe
         </Button>

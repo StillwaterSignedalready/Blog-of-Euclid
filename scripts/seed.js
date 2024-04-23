@@ -32,8 +32,6 @@ function getAllPosts() {
   const slugs = getPostSlugs();
   const posts = slugs
     .map((slug) => getPostBySlug(slug))
-    // sort posts by date in descending order
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
   return posts;
 }
 
@@ -50,7 +48,7 @@ async function seedArticles(client) {
         excerpt_en TEXT NOT NULL,
         content_cn TEXT,
         content_en TEXT NOT NULL,
-        cover_image CHAR(80),
+        cover_image VARCHAR(80),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );

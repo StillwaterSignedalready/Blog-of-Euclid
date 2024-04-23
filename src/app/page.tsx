@@ -4,12 +4,14 @@ import { Intro } from "@/app/_components/intro";
 import { MoreStories } from "@/app/_components/more-stories";
 import Provider from './provider'
 import { unstable_noStore as noStore } from 'next/cache'
-import { fetchArticleListEn } from '@/lib/database'
+import { fetchArticleList } from '@/lib/database'
+import { LanEnum } from '@/interfaces/post'
 
-export default async function Index() {
+export default async function Page({ searchParams }: {
+  searchParams: { lan?: LanEnum }
+}) {
   noStore();
-  const posts = await fetchArticleListEn();
-
+  const posts = await fetchArticleList(searchParams.lan);
   const heroPost = posts[0];
 
   const morePosts = posts.slice(1);

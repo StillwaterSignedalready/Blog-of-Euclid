@@ -5,10 +5,10 @@ import Container from "@/app/_components/container";
 import Header from "@/app/_components/header";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
-import { fetchArticleEn } from '@/lib/database'
+import { fetchArticle } from '@/lib/database'
 
 export default async function Post({ params }: Params) {
-  const post = await fetchArticleEn(Number(params.id));
+  const post = await fetchArticle(Number(params.id));
 
   if (!post) {
     return notFound();
