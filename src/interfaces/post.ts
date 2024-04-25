@@ -19,8 +19,3 @@ export type Post = {
   content: string;
   preview?: boolean;
 };
-
-export enum LanEnum {
-  CN = 'cn',
-  EN = 'en',
-}

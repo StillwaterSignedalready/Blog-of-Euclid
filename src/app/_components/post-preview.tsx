@@ -1,6 +1,7 @@
 import Link from "next/link";
 import CoverImage from "./cover-image";
 import DateFormatter from "./date-formatter";
+import { ISearchParams } from '@/interfaces/common'
 
 type Props = {
   title: string;
@@ -8,6 +9,7 @@ type Props = {
   date: string;
   excerpt: string;
   id: string;
+  searchParams: ISearchParams;
 };
 
 export function PostPreview({
@@ -15,16 +17,17 @@ export function PostPreview({
   coverImage,
   date,
   excerpt,
-  id: id,
+  id,
+  searchParams,
 }: Props) {
   return (
     <div>
       <div className="mb-5 overflow-hidden" style={{ height: 214 }}>
-        <CoverImage id={id} title={title} src={coverImage} />
+        <CoverImage searchParams={searchParams} id={id} title={title} src={coverImage} />
       </div>
       <h3 className="text-3xl mb-3 leading-snug">
         <Link
-          as={`/posts/${id}`}
+          as={`/posts/${id}?lan=${searchParams.lan}`}
           href="/posts/[id]"
           className="hover:underline"
         >

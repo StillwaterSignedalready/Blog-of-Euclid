@@ -4,15 +4,15 @@ import type { RefObject } from 'react'
 import Link from "next/link";
 import DateFormatter from "./date-formatter";
 import useImgCursorOffset from '@/lib/useImgCursorOffset'
-import { transform } from "lodash";
+import { ISearchParams } from '@/interfaces/common'
 
-
-type Props = {
+type IProps = {
   title: string;
   coverImage: string;
   date: string;
   excerpt: string;
   slug: string;
+  searchParams: ISearchParams
 };
 
 export function HeroPost({
@@ -21,19 +21,20 @@ export function HeroPost({
   date,
   excerpt,
   slug,
-}: Props) {
+  searchParams,
+}: IProps) {
   const [offset, imgContainerRef, imgRef] = useImgCursorOffset(3, -150);
 
   return (
     <section>
       <div className="mb-8 md:mb-16 overflow-hidden" style={{ maxHeight: 400 }} ref={imgContainerRef}>
-        <CoverImage rootRef={imgRef as RefObject<HTMLImageElement>} title={title} src={coverImage} id={slug} style={{ transform: `translate(0, ${offset}px)` }} />
+        <CoverImage searchParams={searchParams} rootRef={imgRef as RefObject<HTMLImageElement>} title={title} src={coverImage} id={slug} style={{ transform: `translate(0, ${offset}px)` }} />
       </div>
       <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
         <div>
           <h3 className="mb-4 text-4xl lg:text-5xl leading-tight">
             <Link
-              as={`/posts/${slug}`}
+              as={`/posts/${slug}?lan=${searchParams.lan}`}
               href="/posts/[slug]"
               className="hover:underline"
             >
