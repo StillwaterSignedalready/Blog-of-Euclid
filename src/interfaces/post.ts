@@ -3,6 +3,9 @@ export interface ArticleRow {
   title_en: string;
   excerpt_en: string;
   content_en: string;
+  title_cn: string;
+  excerpt_cn: string;
+  content_cn: string;
   cover_image: string;
   created_at: Date;
 }

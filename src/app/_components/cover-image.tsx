@@ -3,6 +3,7 @@ import type { RefObject } from 'react'
 import Link from "next/link";
 import Image from "next/image";
 import { CSSRuleObject } from "tailwindcss/types/config";
+import { ISearchParams } from '@/interfaces/common'
 
 type Props = {
   title: string;
@@ -10,9 +11,10 @@ type Props = {
   id?: string;
   style?: CSSRuleObject;
   rootRef?: RefObject<HTMLImageElement>;
+  searchParams: ISearchParams;
 };
 
-const CoverImage = ({ title, src, id, style, rootRef }: Props) => {
+const CoverImage = ({ title, src, id, style, rootRef, searchParams }: Props) => {
   const image = (
     <Image
       src={src}
@@ -28,7 +30,7 @@ const CoverImage = ({ title, src, id, style, rootRef }: Props) => {
   return (
     <div className="sm:mx-0" style={style} ref={rootRef}>
       {id ? (
-        <Link as={`/posts/${id}`} href="/posts/[id]" aria-label={title}>
+        <Link as={`/posts/${id}?lan=${searchParams.lan}`} href="/posts/[id]" aria-label={title}>
           {image}
         </Link>
       ) : (

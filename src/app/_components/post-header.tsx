@@ -1,15 +1,16 @@
-import Avatar from "./avatar";
 import CoverImage from "./cover-image";
 import DateFormatter from "./date-formatter";
 import { PostTitle } from "@/app/_components/post-title";
+import { ISearchParams } from '@/interfaces/common'
 
-type Props = {
+type IProps = {
   title: string;
   coverImage: string;
   date: string;
+  searchParams: ISearchParams
 };
 
-export function PostHeader({ title, coverImage, date }: Props) {
+export function PostHeader({ title, coverImage, date, searchParams }: IProps) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
@@ -17,7 +18,7 @@ export function PostHeader({ title, coverImage, date }: Props) {
         {/* <Avatar name={author.name} picture={author.picture} /> */}
       </div>
       <div className="mb-8 md:mb-16 sm:mx-0 overflow-hidden" style={{ maxHeight: 400 }}>
-        <CoverImage title={title} src={coverImage} />
+        <CoverImage searchParams={searchParams} title={title} src={coverImage} />
       </div>
       <div className="max-w-2xl mx-auto">
         <div className="block md:hidden mb-6">
