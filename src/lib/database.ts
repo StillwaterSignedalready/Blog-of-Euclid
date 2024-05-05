@@ -1,6 +1,7 @@
 import { sql } from '@vercel/postgres';
 import { unstable_noStore as noStore } from 'next/cache'
 import { Post, ArticleRow } from '@/interfaces/post'
+import { ICommentParams, ICommentRow, IComment } from '@/interfaces/comment'
 import { LanEnum } from '@/interfaces/common'
 
 const row2enPost = ({ title_en, created_at, cover_image, content_en, excerpt_en, id }: ArticleRow): Post => ({
@@ -21,6 +22,7 @@ const row2cnPost = ({ title_cn, created_at, cover_image, content_cn, excerpt_cn,
   content: content_cn,
 })
 
+// TODO: limit
 export async function fetchArticleList(lan: LanEnum | '' = LanEnum.EN) {
   noStore()
   let row2post: (row: ArticleRow) => Post = row2enPost
@@ -59,5 +61,36 @@ export async function fetchArticle(id: number, lan: LanEnum | '' = LanEnum.EN) {
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch article data.');
+  }
+}
+
+export async function createComment({ articleId, articleTitleEn, userName, userEmail, userImage, content }: ICommentParams) {
+  try {
+    const result = await sql<ArticleRow>`INSERT INTO Comments (article_id, article_title_en, user_name, user_email, user_image, content)
+    VALUES (${articleId}, ${articleTitleEn}, ${userName}, ${userEmail}, ${userImage}, ${content});`
+    return result;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch article data.');
+  }
+}
+
+export async function fetchCommentList(articleId: string): Promise<IComment[]> {
+  try {
+    const sqlResult = await sql<ICommentRow>`SELECT id, article_title_en, user_name, user_email, user_image, content, created_at FROM Comments WHERE article_id = ${articleId} ORDER BY created_at DESC`
+
+    return sqlResult.rows.map(obj => ({
+      id: obj.id,
+      // articleId: obj.article_id,
+      articleTitleEn: obj.article_title_en,
+      userName: obj.user_name,
+      userEmail: obj.user_email,
+      userImage: obj.user_image,
+      content: obj.content,
+      createdAt: obj.created_at,
+    }));
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch comment data.');
   }
 }

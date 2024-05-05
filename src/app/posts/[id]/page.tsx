@@ -5,8 +5,10 @@ import Container from "@/app/_components/container";
 import Header from "@/app/_components/header";
 import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
+import { CommentsDistrict } from '@/app/_components/comments/index'
 import { fetchArticle } from '@/lib/database'
 import { ISearchParams } from '@/interfaces/common'
+import { Divider } from '@nextui-org/react'
 
 export default async function Post({ params, searchParams }: IProps ) {
   const post = await fetchArticle(Number(params.id), searchParams.lan || '');
@@ -31,6 +33,8 @@ export default async function Post({ params, searchParams }: IProps ) {
             date={post.date}
           />
           <PostBody content={content} />
+          <Divider className="max-w-2xl mx-auto mb-4" />
+          <CommentsDistrict post={post} />
         </article>
       </Container>
     </main>
