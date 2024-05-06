@@ -6,12 +6,12 @@ import { CommentForm } from './commentForm'
 import { Post } from '@/interfaces/post'
 import { IComment } from '@/interfaces/comment'
 
-interface IProps { post: Pick<Post, 'id' | 'title'> }
+interface IProps { post?: Pick<Post, 'id' | 'title'> }
 
 export function CommentsDistrict({ post }: IProps) {
   const [commentList, setCommentList] = useState<IComment[]>([])
   const reloadList = useCallback(async () => {
-    const listResult = await getCommentList(post.id)
+    const listResult = await getCommentList(post?.id ?? '')
     setCommentList(listResult)
   }, [])
 

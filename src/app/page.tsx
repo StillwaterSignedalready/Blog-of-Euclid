@@ -6,6 +6,8 @@ import Provider from './provider'
 import { unstable_noStore as noStore } from 'next/cache'
 import { fetchArticleList } from '@/lib/database'
 import { ISearchParams } from '@/interfaces/common'
+import { CommentsDistrict } from '@/app/_components/comments'
+import { Divider } from '@nextui-org/react'
 
 export default async function Page({ searchParams }: {
   searchParams: ISearchParams
@@ -31,6 +33,8 @@ export default async function Page({ searchParams }: {
             excerpt={heroPost.excerpt}
           />
           {morePosts.length > 0 && <MoreStories searchParams={formattedSearchParams} posts={morePosts} />}
+          <Divider className="mb-4" />
+          <CommentsDistrict />
         </Container>
       </main>
     </Provider>

@@ -12,10 +12,17 @@ export const POST = auth(async function POST(req) {
     const { articleId, articleTitleEn, userName, userEmail, userImage, content } = body as ICommentParams
     if (!content) return NextResponse.json({ data: { message: 'Comment content is empty' } }, { status: HttpStatusCode.BadRequest })
 
-    const result = await createComment({ articleId, articleTitleEn, userName, userEmail, userImage, content })
+    const result = await createComment({
+      articleId,
+      articleTitleEn,
+      userName,
+      userEmail,
+      userImage,
+      content,
+    })
     return NextResponse.json({ data: result.rows }, { status: HttpStatusCode.Ok })
   } catch (error) {
     // TODO: log
-    console.log('error: create comment')
+    console.log('[ERROR]: create comment')
   }
 })

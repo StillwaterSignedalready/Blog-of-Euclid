@@ -6,7 +6,6 @@ export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl
   const articleId = searchParams.get('articleId')
 
-  if (!articleId) return NextResponse.json({ data: { message: 'Comment articleId is empty' } }, { status: HttpStatusCode.BadRequest })
-  const rows = await fetchCommentList(articleId)
+  const rows = await fetchCommentList(articleId || null)
   return Response.json({ data: rows })
 }

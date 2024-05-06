@@ -11,7 +11,7 @@ import { Post } from '@/interfaces/post'
 import toast, { Toaster } from 'react-hot-toast'
 
 interface IProps {
-  post: Pick<Post, 'id'|'title'>;
+  post?: Pick<Post, 'id'|'title'>;
   onCommentSuccess?: () => void;
   postTotal: number;
 }
@@ -37,8 +37,8 @@ export function CommentForm({ post, onCommentSuccess, postTotal }: IProps) {
     }
     try {
       await createComment({
-        articleId: post.id,
-        articleTitleEn: post.title,
+        articleId: post?.id ?? null,
+        articleTitleEn: post?.title,
         userName: user?.name ?? '',
         userEmail: user?.email ?? '',
         userImage: user?.image ?? '',

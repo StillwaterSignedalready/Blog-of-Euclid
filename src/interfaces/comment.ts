@@ -21,8 +21,8 @@ export interface IComment {
 }
 
 export interface ICommentParams {
-  articleId: string;
-  articleTitleEn: string;
+  articleId: string | null;
+  articleTitleEn?: string;
   userName: string;
   userEmail: string;
   userImage: string;

@@ -75,9 +75,11 @@ export async function createComment({ articleId, articleTitleEn, userName, userE
   }
 }
 
-export async function fetchCommentList(articleId: string): Promise<IComment[]> {
+export async function fetchCommentList(articleId: string | null): Promise<IComment[]> {
   try {
-    const sqlResult = await sql<ICommentRow>`SELECT id, article_title_en, user_name, user_email, user_image, content, created_at FROM Comments WHERE article_id = ${articleId} ORDER BY created_at DESC`
+    const sqlResult = articleId === null ?
+      await sql<ICommentRow>`SELECT id, article_title_en, user_name, user_email, user_image, content, created_at FROM Comments WHERE article_id is NULL ORDER BY created_at DESC`:
+      await sql<ICommentRow>`SELECT id, article_title_en, user_name, user_email, user_image, content, created_at FROM Comments WHERE article_id = ${articleId} ORDER BY created_at DESC`
 
     return sqlResult.rows.map(obj => ({
       id: obj.id,
