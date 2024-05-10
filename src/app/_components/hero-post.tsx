@@ -1,10 +1,10 @@
 'use client'
-import CoverImage from "@/app/_components/cover-image";
-import type { RefObject } from 'react'
+import { useEffect, useState } from 'react'
 import Link from "next/link";
 import DateFormatter from "./date-formatter";
-import useImgCursorOffset from '@/lib/useImgCursorOffset'
 import { ISearchParams } from '@/interfaces/common'
+import { PostSkeleton } from '@/app/_components/skeleton'
+import { HeroCoverImage } from './hero-cover-image'
 
 type IProps = {
   title: string;
@@ -23,13 +23,16 @@ export function HeroPost({
   slug,
   searchParams,
 }: IProps) {
-  const [offset, imgContainerRef, imgRef] = useImgCursorOffset(3, -150);
-
+  const [showImg, setShowImg] = useState(false)
+  useEffect(() => {
+    setShowImg(true)    
+  }, [])
+  
+  if (!showImg) return <PostSkeleton />
+  
   return (
     <section>
-      <div className="mb-8 md:mb-16 overflow-hidden" style={{ maxHeight: 400 }} ref={imgContainerRef}>
-        <CoverImage searchParams={searchParams} rootRef={imgRef as RefObject<HTMLImageElement>} title={title} src={coverImage} id={slug} style={{ transform: `translate(0, ${offset}px)` }} />
-      </div>
+      <HeroCoverImage searchParams={searchParams} title={title} src={coverImage} id={slug} />
       <div className="md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8 mb-20 md:mb-28">
         <div>
           <h3 className="mb-4 text-4xl lg:text-5xl leading-tight">
