@@ -9,6 +9,7 @@ import { CommentsDistrict } from '@/app/_components/comments/index'
 import { fetchArticle } from '@/lib/database'
 import { ISearchParams } from '@/interfaces/common'
 import { Divider } from '@nextui-org/react'
+import { GravitySpace } from '@/app/_components/gravity-space'
 
 export default async function Post({ params, searchParams }: IProps ) {
   const post = await fetchArticle(Number(params.id), searchParams.lan || '');
@@ -22,6 +23,9 @@ export default async function Post({ params, searchParams }: IProps ) {
   formattedSearchParams.lan = formattedSearchParams.lan || ''
   return (
     <main>
+      <div className="-z-10">
+        <GravitySpace />
+      </div>
       <Alert preview={post.preview} />
       <Container>
         <Header searchParams={formattedSearchParams} />
