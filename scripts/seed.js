@@ -37,7 +37,7 @@ function getAllPosts() {
 
 async function seedArticles(client) {
   try {
-    await client.sql`DROP TABLE IF EXISTS Articles;`
+    // await client.sql`DROP TABLE IF EXISTS Articles;`
 
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS Articles (
@@ -57,7 +57,9 @@ async function seedArticles(client) {
     console.log(`Created "articles" table`);
 
     /** @type {{title: string, excerpt: string, coverImage: string, date: string, author: string, ogImage: string, slug: string, content: string}[]} */
-    const allPosts = getAllPosts()
+    const allPosts = []
+    // TODO: 判断已存在的 title 不 insert
+    // const allPosts = getAllPosts()
 
     const insertedPosts = await Promise.all(
       allPosts.map(
@@ -79,10 +81,36 @@ async function seedArticles(client) {
   }
 }
 
+async function seedComments(client) {
+  // await client.sql`DROP TABLE IF EXISTS Comments;`
+  try {
+    const createTable = await client.sql`
+      CREATE TABLE IF NOT EXISTS Comments (
+        id SERIAL PRIMARY KEY,
+        article_id INTEGER REFERENCES Articles(id),
+        article_title_en TEXT,
+        user_name VARCHAR(20),
+        user_email VARCHAR(50),
+        user_image VARCHAR(80),
+        content TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `;
+    console.log(`Created "comments" table`);
+    return {
+      createTable,
+    };
+  } catch (error) {
+    console.error('Error seeding comments:', error);
+    throw error;
+  }
+}
+
 async function main() {
   const client = await db.connect();
 
   await seedArticles(client);
+  await seedComments(client);
 
   await client.end();
 }

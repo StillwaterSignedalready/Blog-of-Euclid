@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { LegacyRef } from 'react'
+import { MOBILE_REG_EXP } from '@/lib/regExp'
 import { throttle } from 'lodash';
 
 function isContentOutWrapper(wrapper: HTMLElement, content: HTMLElement, offset: number, start: number = 0): boolean {
@@ -11,17 +12,25 @@ function isContentOutWrapper(wrapper: HTMLElement, content: HTMLElement, offset:
   return start + contentBottom + offset < wrapperBottom
 }
 
+export function getShouldSlide(): boolean {
+  return !MOBILE_REG_EXP.test(navigator.userAgent) && window.innerWidth > 1040
+}
+
 function useImgCursorOffset(offsetFactor: number, start: number): [number, LegacyRef<HTMLDivElement>, LegacyRef<HTMLElement>] {
   const imgContainerRef = useRef<HTMLDivElement>(null)
   const imgRef = useRef<HTMLElement>(null)
   const isCursorInImgContainer = useRef<boolean>(false)
   const shouldFirstClientYSet = useRef<boolean>(false)
   const originY = useRef<number|null>(null)
+  // TODO: 屏幕宽度
   const [offset, setOffset] = useState<number>(start)
-
-  // TODO: 二维移动
-
+  
   useEffect(() => {
+    if (!getShouldSlide()) {
+      setOffset(0)
+      return
+    }
+    setOffset(start)
     const imgContainer = imgContainerRef.current;
     const enterHandler = () => {
       isCursorInImgContainer.current = true

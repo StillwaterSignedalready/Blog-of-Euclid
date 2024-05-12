@@ -3,6 +3,220 @@
 @tailwind utilities;
 
 ul {
-  list-style: revert; /* 恢复列表项的默认样式 */
-  padding-left: 1em; /* 恢复左侧缩进 */
+  list-style: revert;
+  /* 恢复列表项的默认样式 */
+  padding-left: 1em;
+  /* 恢复左侧缩进 */
+}
+@keyframes pulse {
+  0%, 20%, 70%, 100% {}
+  50% {
+    background-color: rgb(225 226 230);
+  }
+}
+@keyframes movingleftright0 {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  25% {
+    transform: translateX(-6vw) translateY(-12vw) scale(0.1);
+  }
+
+  40% {
+    transform: translateX(-10vw) translateY(-20vw) scale(0.1);
+  }
+
+  75% {
+    transform: translateX(80vw);
+  }
+
+  to {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes movingleftright1 {
+  0% {
+    transform: translateX(0) translateY(0);
+    z-index: -1;
+  }
+
+  50% {
+    transform: translateX(60vw);
+    z-index: 1;
+  }
+
+  60% {
+    transform: translateX(60vw) translateY(-26vh);
+    z-index: -1;
+  }
+
+  to {
+    transform: translateY(0) translateX(0);
+    z-index: -1;
+  }
+}
+@keyframes movingupright0 {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  35% {
+    transform: translateX(0) translateY(-45vh);
+  }
+
+  55% {
+    transform: translateX(45vw) translateY(-45vh);
+  }
+
+  to {
+    transform: translateY(0) translateX(0);
+  }
+}
+@keyframes movingleftright2 {
+  0% {
+    transform: translateX(0) translateY(0) scale(0.6);
+  }
+
+  35% {
+    transform: translateX(-50vw) translateY(-55vh) scale(0.3);
+  }
+
+  60% {
+    transform: translateX(50vw) translateY(-55vh) scale(1.2);
+  }
+
+  to {
+    transform: translateY(0) translateX(0) scale(0.6);
+  }
+}
+@keyframes movingdownright0 {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  25% {
+    transform: translateX(40vw) translateY(0);
+  }
+
+  80% {
+    transform: translateX(0) translateY(80vh);
+  }
+
+  to {
+    transform: translateY(0) translateX(0);
+  }
+}
+@keyframes movingupleft0 {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  25% {
+    transform: translateX(-40vw) translateY(0);
+  }
+
+  80% {
+    transform: translateX(0) translateY(-80vh);
+  }
+
+  to {
+    transform: translateY(0) translateX(0);
+  }
+}
+@keyframes movingdownright1 {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  50% {
+    transform: translateX(130vw) translateY(0);
+  }
+
+  to {
+    transform: translateY(0) translateX(0);
+  }
+}
+@keyframes movingupdown0 {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  30% {
+    transform: translateX(0) translateY(0);
+  }
+  45%, 60% {
+    transform: translateX(0) translateY(-8vh);
+  }
+  70% {
+    transform: translateX(0) translateY(0);
+  }
+
+  to {
+    transform: translateY(0) translateX(0);
+  }
+}
+@media screen and (max-width:1024px){
+  .header-bg-space {
+    .big-planet {
+      top: 25vh;
+    }
+    .top-big-planet {
+      top: -110vw;
+    }
+  }
+}
+@media screen and (min-width:1024px){
+  .header-bg-space {
+    .big-planet {
+      top: 10vh;
+    }
+    .top-big-planet {
+      top: -133vw;
+    }
+  }
+}
+.header-bg-space {
+  .big-planet {
+    box-shadow: 0px 0px 31px 21px rgba(190, 190, 190, 0.3);
+    width: 100vw;
+    height: 100vw;
+  }
+  .avatar-planet {
+    background-image: radial-gradient(farthest-corner at 70% 75%, rgb(179, 187, 198), rgb(139, 145, 163), rgb(75, 85, 99));
+    animation-delay: 1s;
+  }
+  .halo-planet {
+    box-shadow: 0px 0px 31px 11px rgba(199, 250, 255, 0.4);
+  }
+  .far-deep-planet {
+    top: 35vh;
+    left: 50vw;
+  }
+  .far-big-planet {
+    top: 40vh;
+    left: 50vw;
+    animation-delay: 9s;
+  }
+  .side-twin-0 {
+    top: 10vh;
+    left: -15vw;
+    animation-delay: 7s;
+  }
+  .side-twin-1 {
+    top: 10vh;
+    right: -10vw;
+    animation-delay: 7s;
+  }
+  .bottom-horizon-planet {
+    top: 21vh;
+    left: -10vw;
+    animation-delay: 12s;
+  }
+  .top-big-planet {
+    width: 140vw;
+    height: 140vw;
+    margin-left: -20vw;
+  }
 }
