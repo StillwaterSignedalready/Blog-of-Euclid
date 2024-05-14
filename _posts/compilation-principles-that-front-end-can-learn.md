@@ -1,7 +1,7 @@
 ---
 title: "Compilation Principles That Front End Can Learn"
 excerpt: "In modern front-end development, when requirements involve the display and editing of code and expressions, one of the programmers' three romances, compiler theory, is involved. It is a seemingly deep and complex field."
-coverImage: "/assets/blog/compilation-principles-that-front-end-can-learn/cover.png"
+coverImage: "/assets/blog/compilation-principles-that-front-end-can-learn/cover.jpg"
 date: "2023-08-22T05:35:07.322Z"
 ---
 In modern front-end development, when requirements involve the display and editing of code and expressions, one of the programmers' three romances, compiler theory, is involved. It is a seemingly deep and complex field. In this article, we will demonstrate how to build a compiler-based project using TypeScript, parsing arithmetic expressions to construct a syntax tree. This not only deepens your understanding of compiler theory but also adds a highlight to your front-end skillset.

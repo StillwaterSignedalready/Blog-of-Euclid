@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path')
 const matter = require('gray-matter');
 
-// 指定加载 .env.development.local 文件
+// 指定加载 .env.development.local 文件的环境变量
 dotenv.config({ path: '.env.development.local' });
 
 const postsDirectory = path.join(process.cwd(), "_posts");
@@ -28,9 +28,10 @@ function getPostBySlug(slug) {
   };
 }
 
-function getAllPosts() {
+function getNeededPosts() {
   const slugs = getPostSlugs();
   const posts = slugs
+    .filter(slug => slug === 'daily-recipe-architecture-the-definitive-guide.md')
     .map((slug) => getPostBySlug(slug))
   return posts;
 }
@@ -57,9 +58,9 @@ async function seedArticles(client) {
     console.log(`Created "articles" table`);
 
     /** @type {{title: string, excerpt: string, coverImage: string, date: string, author: string, ogImage: string, slug: string, content: string}[]} */
-    const allPosts = []
+    // const allPosts = []
     // TODO: 判断已存在的 title 不 insert
-    // const allPosts = getAllPosts()
+    const allPosts = getNeededPosts()
 
     const insertedPosts = await Promise.all(
       allPosts.map(
@@ -109,8 +110,8 @@ async function seedComments(client) {
 async function main() {
   const client = await db.connect();
 
-  await seedArticles(client);
-  await seedComments(client);
+  // await seedArticles(client);
+  // await seedComments(client);
 
   await client.end();
 }
